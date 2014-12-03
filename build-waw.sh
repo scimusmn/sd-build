@@ -148,3 +148,24 @@ echo "--------------------------------------------------------------------------
 echo "Install LaunchAgents."
 cp $DIR/assets/launchd/* ~/Library/LaunchAgents/
 
+echo
+echo "--------------------------------------------------------------------------------"
+echo "NOTES"
+echo "--------------------------------------------------------------------------------"
+echo "
+The first time you download a meteor application it needs to be run once
+manually with an internet connection, so that it can download and setup the
+included 3rd party modules.
+
+Once you've run this build script you should manually start and stop Meteor
+using this proceedure:
+
+  1. cd ~/Desktop ${source_name}
+  2. meteor
+  3. Wait until it says "App running at..."
+  4. Press ctrl+c to end the Meteor process.
+
+Meteor should now start up properly when you reboot.
+
+Reboot the machine to test.
+"

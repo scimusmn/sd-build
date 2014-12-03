@@ -139,3 +139,12 @@ elif [ -d $iconDestination ]; then
     Rez -append $rsrc -o $iconDestination/Icon?
     SetFile -a V $iconDestination/Icon?
 fi
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "Setup system startup items"
+echo "--------------------------------------------------------------------------------"
+# Install LaunchAgents to start everything up when the computer boots
+echo "Install LaunchAgents."
+cp $DIR/assets/launchd/* ~/Library/LaunchAgents/
+

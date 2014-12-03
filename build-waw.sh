@@ -109,29 +109,26 @@ cp $DIR/assets/nw/package.json $app_nw
 cp $DIR/assets/nw/start-c2c.sh ~/Desktop/$app_name/
 chmod +x ~/Desktop/$app_name/start-c2c.sh
 
-cp $DIR/assets/logo/nw.icns ~/Desktop/$app_name/${app_name}.app/Contents/Resources/
-
-
 #
 # Set the application icon
+# Credit for most of this icon operation goes to Gregory Vincic on
+# Stack Overflow for this solution:
+# http://stackoverflow.com/questions/8371790/how-to-set-icon-on-file-or-directory-using-cli-on-os-x/8375093#8375093
 #
+cp $DIR/assets/logo/nw.icns ~/Desktop/$app_name/${app_name}.app/Contents/Resources/
 iconSource=$DIR/assets/logo/nw.icns
 iconDestination=~/Desktop/$app_name/${app_name}.app
 icon=/tmp/`basename $iconSource`
 rsrc=/tmp/icon.rsrc
-
 # Create icon from the iconSource
 cp $iconSource $icon
-
 # Add icon to image file, meaning use itself as the icon
-sips -i $icon
-
+# Send noisy output to /dev/null for neatness
+sips -i $icon >> /dev/null
 # Take that icon and put it into a rsrc file
 DeRez -only icns $icon > $rsrc
-
 # Apply the rsrc file to
 SetFile -a C $iconDestination
-
 if [ -f $iconDestination ]; then
     # Destination is a file
     Rez -append $rsrc -o $iconDestination

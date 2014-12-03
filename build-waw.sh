@@ -1,8 +1,29 @@
 #!/bin/sh
 
+#
+# Setup
+#
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source_name="sd-waw"
 
-echo "Downloading node-webkit"
+echo
+echo "--------------------------------------------------------------------------------"
+echo "Get application source"
+echo "--------------------------------------------------------------------------------"
+if [ -e ~/Desktop/${source_name} ]
+then
+  echo "There's already a source file at ~/Desktop/${source_name}."
+  echo "So, I'm going to skip this step."
+  echo "You'll need to mannually check and see if your local source is up to date and correct."
+else
+  echo "Downloading source for ${source_name}"
+  cd ~/Desktop/ && { git clone https://github.com/scimusmn/${source_name}.git ; cd - ; }
+fi
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "Get node-webkit"
+echo "--------------------------------------------------------------------------------"
 
 node_webkit_domain="http://dl.node-webkit.org"
 node_webkit_version="v0.11.2"
@@ -20,41 +41,45 @@ app_name=c2c
 #
 if [ ! -e /tmp/$node_webkit_zip ]
 then
-  echo "Downloading node-webkit"
+  echo "Downloading node-webkit binary."
   nw_url=$node_webkit_domain/$node_webkit_version/$node_webkit_zip
   cd /tmp && { curl -O $nw_url ; cd - ; }
 else
-  echo "node-webkit is already present"
+  echo "There is already a node-webkit download. We'll use that."
 fi
-
 
 #
 # Cleanup old extracts
 #
 if [ -e /tmp/$node_webkit_filename ]
 then
-  echo "Removing old node-webkit extract"
+  echo "Removing old node-webkit extract."
   rm -rf /tmp/$node_webkit_filename
 fi
 
 #
 # Unzip download
 #
-unzip /tmp/$node_webkit_zip -d /tmp/
+unzip -q /tmp/$node_webkit_zip -d /tmp/
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "Setup node-webkit with our customizations"
+echo "--------------------------------------------------------------------------------"
 
 #
 # Cleanup old apps and move new one to the desktop
 #
 if [ -e ~/Desktop/c2c ]
 then
-  echo "Removing old c2c app"
+  echo "Removing old c2c app."
   rm -rf ~/Desktop/c2c
 fi
 
 #
 # Create app files and folders.
 #
-echo "Setting up the c2c app"
+echo "Moving node-webkit to the Desktop and setting it up as c2c.app."
 
 #
 # Node webkit config
@@ -72,6 +97,7 @@ rm -rf ~/Desktop/$app_name/nwsnapshot
 
 mv ~/Desktop/$app_name/node-webkit.app ~/Desktop/$app_name/${app_name}.app
 
+echo "Configure node-webkit with our package.json."
 app_nw=~/Desktop/$app_name/${app_name}.app/Contents/Resources/app.nw/
 mkdir $app_nw
 cp $DIR/assets/nw/package.json $app_nw

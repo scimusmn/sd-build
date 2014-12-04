@@ -112,7 +112,8 @@ mv ~/Desktop/$app_name/node-webkit.app ~/Desktop/$app_name/${app_name}.app
 echo "Configure node-webkit with our package.json."
 app_nw=~/Desktop/$app_name/${app_name}.app/Contents/Resources/app.nw/
 mkdir $app_nw
-cp $DIR/assets/nw/package${waw_id}.json $app_nw/package.json
+# TODO This should get some error testing
+cp $DIR/assets/nw/package-${waw_id}.json $app_nw/package.json
 
 #
 # Delayed startup script

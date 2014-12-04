@@ -153,6 +153,9 @@ echo "--------------------------------------------------------------------------
 echo "NOTES"
 echo "--------------------------------------------------------------------------------"
 echo "
+There are two manual steps that are required after running this build script.
+
+# Meteor setup
 The first time you download a meteor application it needs to be run once
 manually with an internet connection, so that it can download and setup the
 included 3rd party modules.
@@ -160,12 +163,21 @@ included 3rd party modules.
 Once you've run this build script you should manually start and stop Meteor
 using this proceedure:
 
-  1. cd ~/Desktop ${source_name}
+  1. cd ~/Desktop/${source_name}
   2. meteor
   3. Wait until it says "App running at..."
   4. Press ctrl+c to end the Meteor process.
 
 Meteor should now start up properly when you reboot.
+
+# Meteor settings
+Our Meteor apps need some custom configuration, to handle screensavers and
+Google Analytics. These values are manually configured in a JSON file:
+
+  1. cd ~/Desktop/${source_name}/config
+  2. cp settings.default.json settings.json
+  3. Edit settings.json, adding you Google Analytics ID and the home page
+     for the appropriate kiosk.
 
 Reboot the machine to test.
 "

@@ -2,6 +2,9 @@
 
 rm -rf ~/Library/LaunchAgents/org.smm.*
 rm -rf ~/Desktop/sd-waw
+rm -rf ~/Desktop/sd-bat
+rm -rf ~/Desktop/sd-scrapbook
+rm -rf ~/Desktop/source
 rm -rf ~/Desktop/c2c
 rm -rf /tmp/c2c-err.log
 rm -rf /tmp/c2c-report.log

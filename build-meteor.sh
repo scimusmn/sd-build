@@ -3,20 +3,20 @@
 #
 # Setup
 #
-if [ $# -lt 1 ]; then
+if [ $# -lt 2 ]; then
   echo 1>&2 "
 You must specify the waw component id. Like:
-  ./build-waw.sh torrey-pines"
+  ./build-waw.sh sd-waw torrey-pines"
   exit 2
-elif [ $# -gt 3 ]; then
+elif [ $# -gt 2 ]; then
   echo 1>&2 "$0: too many arguments.
 You should only specify the waw component id. Like:
-  ./build-waw.sh torrey-pines"
+  ./build-waw.sh sd-waw torrey-pines"
 fi
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-source_name="sd-waw"
-waw_id=$1
+source_name=$1
+waw_id=$2
 
 echo
 echo "--------------------------------------------------------------------------------"

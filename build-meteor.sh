@@ -16,20 +16,20 @@ fi
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source_name=$1
-waw_id=$2
+app_id=$2
 
 echo
 echo "--------------------------------------------------------------------------------"
 echo "Get application source"
 echo "--------------------------------------------------------------------------------"
-if [ -e ~/Desktop/${source_name} ]
+if [ -e ~/Desktop/source ]
 then
-  echo "There's already a source file at ~/Desktop/${source_name}."
+  echo "There's already a source file at ~/Desktop/source."
   echo "So, I'm going to skip this step."
   echo "You'll need to mannually check and see if your local source is up to date and correct."
 else
   echo "Downloading source for ${source_name}"
-  cd ~/Desktop/ && { git clone https://github.com/scimusmn/${source_name}.git ; cd - ; }
+  cd ~/Desktop/ && { git clone https://github.com/scimusmn/${source_name}.git ~/Desktop/source; cd - ; }
 fi
 
 echo
@@ -113,7 +113,7 @@ echo "Configure node-webkit with our package.json."
 app_nw=~/Desktop/$app_name/${app_name}.app/Contents/Resources/app.nw/
 mkdir $app_nw
 # TODO This should get some error testing
-cp $DIR/assets/nw/package-${waw_id}.json $app_nw/package.json
+cp $DIR/assets/nw/package-${appwaw_id}.json $app_nw/package.json
 
 #
 # Delayed startup script
@@ -176,7 +176,7 @@ included 3rd party modules.
 Once you've run this build script you should manually start and stop Meteor
 using this proceedure:
 
-  1. cd ~/Desktop/${source_name}
+  1. cd ~/Desktop/source
   2. meteor
   3. Wait until it says "App running at..."
   4. Press ctrl+c to end the Meteor process.
@@ -187,7 +187,7 @@ Meteor should now start up properly when you reboot.
 Our Meteor apps need some custom configuration, to handle screensavers and
 Google Analytics. These values are manually configured in a JSON file:
 
-  1. cd ~/Desktop/${source_name}/config
+  1. cd ~/Desktop/source/config
   2. cp settings.default.json settings.json
   3. Edit settings.json, adding you Google Analytics ID and the home page
      for the appropriate kiosk.

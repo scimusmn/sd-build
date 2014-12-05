@@ -22,6 +22,6 @@
 	<key>StandardOutPath</key>
 	<string>/tmp/meteor-report.log</string>
 	<key>WorkingDirectory</key>
-	<string>/Users/exhibits/Desktop/sd-waw</string>
+	<string>/Users/exhibits/Desktop/source</string>
 </dict>
 </plist>

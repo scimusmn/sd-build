@@ -1,6 +1,6 @@
 {
   "name": "C2C",
-  "main": "http://localhost:3000",
+  "main": "http://localhost:3000/bats",
   "window": {
       "fullscreen": true,
       "toolbar": false

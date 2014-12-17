@@ -1,0 +1,8 @@
+{
+  "name": "C2C",
+  "main": "http://localhost:3000/canyons",
+  "window": {
+      "fullscreen": true,
+      "toolbar": false
+  }
+}
